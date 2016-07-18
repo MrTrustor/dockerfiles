@@ -1,8 +1,12 @@
-FROM python:2.7
+FROM alpine:3.4
 MAINTAINER Theo Chamley <theo.ch@mley.fr>
 
-RUN git clone https://github.com/oliver006/elasticsearch-test-data.git && \
+RUN apk add --no-cache \
+    git \
+    py-pip && \
+    git clone https://github.com/oliver006/elasticsearch-test-data.git && \
     pip install -r elasticsearch-test-data/requirements.txt && \
-    ln -s /usr/local/bin/python /usr/bin/python
+    rm -rf /elasticsearch-test-data/.git && \
+    apk del git
 
 ENTRYPOINT [ "/elasticsearch-test-data/es_test_data.py" ]
