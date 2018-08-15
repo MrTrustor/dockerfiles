@@ -1,6 +1,6 @@
 FROM alpine:3.4
 
-ENV HUGO_VERSION 0.26
+ENV HUGO_VERSION 0.46
 
 RUN apk add --update curl \
     python \
